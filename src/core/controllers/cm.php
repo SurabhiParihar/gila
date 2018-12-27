@@ -188,12 +188,20 @@ class cm extends controller
         if(isset($_GET['id'])) {
             $fields = $pnk->fields('clone');
             $fields =  implode(',', $fields );
-            $res = $db->query("INSERT INTO {$pnk->name()}($fields) SELECT $fields FROM {$pnk->name()} WHERE {$pnk->id()}=?;",$_GET['id']);
+            $q = "INSERT INTO {$pnk->name()}($fields) SELECT $fields FROM {$pnk->name()} WHERE {$pnk->id()}=?;";
+            $res = $db->query($q,$_GET['id']);
             $id = $db->insert_id;
         } else {
             $res = $db->query("INSERT INTO {$pnk->name()}() VALUES();");
+            echo "INSERT INTO {$pnk->name()}() VALUES();";
             $id = $db->insert_id;
-            $db->query("UPDATE {$pnk->name()} {$pnk->set($_GET)} WHERE {$pnk->id()}=?;",$id);
+            if($id==0) {
+                echo "Row was not created. Does this table exist?";
+                exit;
+            } else {
+                $q = "UPDATE {$pnk->name()} {$pnk->set($_GET)} WHERE {$pnk->id()}=?;";
+                $db->query($q,$id);
+            }
         }
 
         $result['fields'] = $pnk->fields();

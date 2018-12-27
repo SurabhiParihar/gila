@@ -1,10 +1,11 @@
 <ul class="g-nav vertical">
 <?php
 
-if(!@class_exists('blog')) {
-	include_once "src/core/controllers/blog.php";
-	new blog();
-}
+if(!@class_exists('blog')) if(file_exists("src/blog/controllers/blog.php")){
+    include_once "src/blog/controllers/blog.php";
+    new blog();
+} else return;
+
 
 $stacked_file = 'tmp/stacked-wdgt'.$widget_data->widget_id.'.png';
 $posts = [];

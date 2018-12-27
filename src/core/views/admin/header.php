@@ -2,7 +2,7 @@
 <html lang="<?=gila::config('language')?>">
 
 <head>
-    <base href="<?=gila::config('base')?>">
+    <base href="<?=gila::base_url()?>">
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
