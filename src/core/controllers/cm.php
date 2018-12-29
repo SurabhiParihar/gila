@@ -105,7 +105,7 @@ class cm extends controller
         // filename to be downloaded
         $filename = router::get("t",1). date('Y-m-d') . ".csv";
         header("Content-Disposition: attachment; filename=\"$filename\"");
-        $fields = $pnk->getTable()['csv'];
+        $fields = $pnk->fields('csv');
         echo implode(',',$fields)."\n";
         $ql = "SELECT {$pnk->select($fields)} FROM {$pnk->name()}{$pnk->where($_GET)}{$pnk->orderby()}{$pnk->limit()};";
         $res = $db->query($ql);
@@ -119,6 +119,37 @@ class cm extends controller
             echo implode(',',$r)."\n";
         }
     }
+
+    function upload_csvAction ()
+    {
+        global $db;
+        $inserted = 0;
+        $updated = 0;
+        $pnk = new gTable(router::get("t",1),$this->permissions);
+        $filename = $_FILES["file"]["tmp_name"];        
+        $fields = $pnk->fields('edit');
+        $quest = "";
+        $nfields = count($fields);
+        $fields = implode(',',$fields);
+        for($i=0; $i<$nfields; $i++) {
+            if($i>0) $quest .= ',';
+            $quest .= '?';
+        }
+        if(@$_FILES["file"]["size"] > 0) {
+              $file = fopen($filename, "r");
+            while (($row = fgetcsv($file, 10000, ",")) !== FALSE) {
+               $ql = "INSERT INTO {$pnk->name()} ($fields) VALUES($quest);";
+                if($db->query($ql, $row)) {
+                    $inserted++;
+                }
+                else {
+                    //try something else
+                }
+             }
+             fclose($file);
+         }
+    }
+
 
     function group_rowsAction ()
     {
