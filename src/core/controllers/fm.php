@@ -52,28 +52,36 @@ class fm extends controller
   }
 
   function readAction () {
+    if (!gForm::posted()) die("Permission denied.");
     if (!is_file($this->path)) die("Path is not a file");
     echo htmlspecialchars(file_get_contents($this->path));
   }
 
   function saveAction () {
-    if(!gForm::posted()) return;
-    if(!file_put_contents($this->path, $_POST['contents'])) {
+    if(!gForm::posted() || !file_put_contents($this->path, $_POST['contents'])) {
       ob_clean();
       echo "Permission denied.";
     }
   }
 
   function newfolderAction () {
-    mkdir(SITE_PATH.$_POST['path'],0755,true);
+    if(!gForm::posted()) {
+      echo "Permission denied.";
+      return;
+    }
+    mkdir(SITE_PATH.str_replace('..','',$_POST['path']),0755,true);
   }
 
   function newfileAction () {
-    file_put_contents(SITE_PATH.$_POST['path'],' ');
+    if(!gForm::posted()) {
+      echo "Permission denied.";
+      return;
+    }
+    file_put_contents(SITE_PATH.str_replace('..','',$_POST['path']),' ');
   }
 
   function moveAction () {
-    if(!rename($this->path,$_POST['newpath'])){
+    if(!gForm::posted() || !rename($this->path, $_POST['newpath'])) {
       ob_clean();
       echo "Permission denied.";
     }
@@ -81,7 +89,7 @@ class fm extends controller
   }
 
   function uploadAction() {
-    if(isset($_FILES['uploadfiles'])) {
+    if(isset($_FILES['uploadfiles']) && gForm::posted()) {
       if (isset($_FILES['uploadfiles']["error"])) if ($_FILES['uploadfiles']["error"] > 0) {
         echo "Error: " . $_FILES['uploadfiles']['error'] . "<br>";
       }

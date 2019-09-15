@@ -21,29 +21,29 @@ $ext = $pathinfo['extension'];
 $dirname = $pathinfo['dirname'];
 if(is_dir($filepath)) $dirname = $filepath;
 if($dirname=='') $dirname = '.';
+$show_path = substr($filepath, 1+strlen(realpath('')));
 ?>
 
 <div style="display:grid; grid-template-columns: 250px 1fr;grid-gap:1em">
 
   <div class="fm_dir" style="border:1px solid lightgrey;"></div>
-
   <div class="fm_file">
-    <div class="wrapper"><strong><?=$filepath?></strong>
+    <div class="wrapper"><strong><?=htmlentities($show_path)?></strong>
 <?php
     if(in_array($ext ,$img_ext)) {
 ?>
-      <span class="g-btn" onclick="movefile('<?=$filepath?>')"><?=_('Rename')?></span>
-      <span class="g-btn" onclick="deletefile('<?=$filepath?>')"><?=_('Delete')?></span>
+      <span class="g-btn" onclick="movefile('<?=$show_path?>')"><?=_('Rename')?></span>
+      <span class="g-btn" onclick="deletefile('<?=$show_path?>')"><?=_('Delete')?></span>
 <?php
-      echo '</div><img src="'.$filepath.'" style="max-width:400px">';
+      echo '</div><img src="'.$show_path.'" style="max-width:400px">';
     } else if(is_dir($filepath) || $filepath=='') {
       // do nothing
     } else {
       $value = htmlentities(file_get_contents($c->filepath));
     ?>
-    <span class="g-btn" onclick="savefile('<?=$filepath?>')"><?=_('Save')?></span>
-    <span class="g-btn" onclick="movefile('<?=$filepath?>')"><?=_('Rename')?></span>
-    <span class="g-btn" onclick="deletefile('<?=$filepath?>')"><?=_('Delete')?></span>
+    <span class="g-btn" onclick="savefile('<?=$show_path?>')"><?=_('Save')?></span>
+    <span class="g-btn" onclick="movefile('<?=$show_path?>')"><?=_('Rename')?></span>
+    <span class="g-btn" onclick="deletefile('<?=$show_path?>')"><?=_('Delete')?></span>
     </div>
     <textarea id="textarea"><?=$value?></textarea>
     
@@ -57,7 +57,6 @@ if($dirname=='') $dirname = '.';
     requiredRes = new Array()
     var myCodeMirror = new Array();
     var saveFilePath;
-    var csrfToken = '<?=gForm::getToken()?>';
 
     mirror = CodeMirror.fromTextArea(document.getElementById('textarea'),{
         lineNumbers:true
@@ -68,6 +67,8 @@ if($dirname=='') $dirname = '.';
     ?>
 
 <script>
+var csrfToken = '<?=gForm::getToken()?>';
+var dir_path='';
 updateDir("<?=$dirname?>");
 
 function updateDir(path) {
@@ -102,7 +103,7 @@ function createDir() {
   path = prompt("Please enter the folder name", "New Folder");
   if(path != null) {
     g.loader()
-    g.post('fm/newfolder', 'path='+dir_path+'/'+path,function(msg){
+    $.post('fm/newfolder', {path:dir_path+'/'+path, formToken:csrfToken},function(msg){
       g.loader(false)
       if(msg=='') msg="Folder created successfully"
       alert(msg);
@@ -114,7 +115,7 @@ function createFile() {
   path = prompt("Please enter new file name", 'File.txt');
   if(path != null) {
     g.loader()
-    g.post('fm/newfile', 'path='+dir_path+'/'+path,function(msg){
+    $.post('fm/newfile', {path:dir_path+'/'+path, formToken:csrfToken},function(msg){
       g.loader(false)
       if(msg=='') msg="File created successfully"
       alert(msg);
@@ -125,6 +126,7 @@ function createFile() {
 function uploadFile() {
   let fm=new FormData()
   fm.append('uploadfiles', g.el('up_files').files[0]);
+  fm.append('formToken', csrfToken);
   fm.append('path', dir_path);
   fm.append('g_response', 'content');
   g.loader()
@@ -161,7 +163,11 @@ function deletefile(path) {
     g.loader()
     $.post('fm/delete', {path:path, formToken:csrfToken},function(msg){
       g.loader(false)
-      location.href = 'admin/fm?f='+dir_path
+      if(msg!='') {
+        alert(msg)
+      } else {
+        location.href = 'admin/fm?f='+dir_path
+      }
     })
   }
 }
