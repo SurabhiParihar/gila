@@ -180,7 +180,7 @@ class gTable
     return "";
   }
 
-  function event($event, $data) {
+  function event($event, &$data) {
     if(isset($this->table['events'])) foreach($this->table['events'] as $ev) {
       if($ev[0]==$event) {
         $ev[1]($data);
