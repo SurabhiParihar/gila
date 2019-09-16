@@ -15,5 +15,5 @@ var lang_array={
   "Yes":"Oui",
   "No":"Non",
 
-  "Delete registry?":"Êtes-vous sûr de vouleir supprimer définitivement le registre ?"
+  "Delete registry?":"Êtes-vous sûr de vouleir supprimer définitivement le registre?"
 };

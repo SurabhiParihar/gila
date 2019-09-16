@@ -15,6 +15,5 @@ var lang_array={
 	"Yes":"Ναι",
 	"No":"Όχι",
 	
-	"Delete registry?":"Διαγραφή εγγραφής?"
+	"Delete registry?":"Διαγραφή εγγραφής;"
 };
-

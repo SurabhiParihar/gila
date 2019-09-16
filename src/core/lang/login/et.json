@@ -24,5 +24,6 @@
     "Confirm Password": "Kinnita parooli",
     "Change Password": "Muuda parooli",
     "Send Email": "Saada kiri",
-    "login_error_msg": "Wrong email or password"
+    "login_error_msg": "Wrong email or password",
+    "login_error_msg2": "Sellel IP-l on tehtud liiga palju ebaõnnestunud katseid. Turvakaalutlustel proovige minuti pärast uuesti. Kui te ei mäleta oma parooli, järgige juhiseid selle lähtestamiseks."
 }

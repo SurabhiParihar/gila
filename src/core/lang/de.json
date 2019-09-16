@@ -4,6 +4,7 @@
     "Submit": "Absenden",
     "Title": "Titel",
     "Description": "Beschreibung",
+    "Thumbnail": "Miniaturansicht",
     "Website URL": "Website URL",
     "Admin Email": "Administrator E-Mail",
     "Pretty Urls": "Pretty Url",
@@ -43,5 +44,8 @@
     "New": "Neu",
     "Edit": "Bearbeiten",
     "Delete": "Löschen",
-    "_changes_updated": "Änderungen wurden erfolgreich gespeichert!"
+    "Update": "Aktualisieren",
+    "Save": "Speichern",
+    "_changes_updated": "Änderungen wurden erfolgreich gespeichert!",
+    "Use WEBP":"Verwenden WEBP"
 }

@@ -4,6 +4,7 @@
     "Submit": "Saada",
     "Title": "Pealkiri",
     "Description": "Kirjeldus",
+    "Thumbnail": "Pisipilt",
     "Website URL": "Veebisaidi aadress",
     "Admin Email": "Admini e-post",
     "Pretty Urls": "Ilusad URL-id",
@@ -43,9 +44,9 @@
     "New": "Uus",
     "Edit": "Muuda",
     "Delete": "Kustuta",
-    "Update": "",
-    "Save": "",
-    "_not_found": "",
+    "Update": "Uuenda",
+    "Save": "päästa",
+    "_not_found": "ei leitud",
     "_changes_updated": "Muudatused on salvestatud!",
     "Use WEBP":"Pilte Webp"
 }

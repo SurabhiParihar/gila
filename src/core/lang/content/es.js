@@ -17,4 +17,3 @@ var lang_array={
 	
 	"Delete registry?":"Eliminar registro?"
 };
-

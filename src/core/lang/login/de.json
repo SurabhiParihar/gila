@@ -24,5 +24,6 @@
     "Confirm Password": "Bestätige das Kennwort",
     "Change Password": "Kennwort Ändern",
     "Send Email": "E-mail Abschicken",
-    "login_error_msg": "Wrong email or password"
+    "login_error_msg": "Wrong email or password",
+    "login_error_msg2": "Bitte versuchen Sie es aus Sicherheitsgründen in einer Minute noch einmal. Wenn Sie sich nicht an Ihr Passwort erinnern, befolgen Sie die Anweisungen zum Zurücksetzen."
 }

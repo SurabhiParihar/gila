@@ -22,20 +22,19 @@ return [
       'style'=>'width:5%',
       'create'=>false,'edit'=>false
     ],
-    'title'=> [
-      'title'=>'Title',
-    ],
-    'description'=> [
-      'title'=>'Description', 'list'=>false
-    ],
     'thumbnail'=> [
       'type'=>'media',
-      'list'=>false,
       'type'=>'meta',
       'input-type'=>'media',
       'meta-csv'=>true,
       "mt"=>['postmeta', 'post_id', 'value'],
       'metatype'=>['vartype', 'thumbnail']
+    ],
+    'title'=> [
+      'title'=>'Title',
+    ],
+    'description'=> [
+      'title'=>'Description', 'list'=>false
     ],
     'slug'=> ['list'=>false],
     'user_id'=> [

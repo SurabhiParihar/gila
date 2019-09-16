@@ -24,5 +24,6 @@
     "Confirm Password": "Επιβεβαίωση κωδικού",
     "Change Password": "Αλλαγή κωδικού",
     "Send Email": "Αποστολή Email",
-    "login_error_msg": "Wrong email or password"
+    "login_error_msg": "Λάθος email ή κωδικός",
+    "login_error_msg2": "Για λόγους ασφαλείας, προσπαθηστε να συνδεθείτε σε ενα λεπτό.Εαν δε θυμάσε το κωσικό σου ακολόυθησε τις οδηγίες για να αλλάξεις το κωδικό σου."
 }

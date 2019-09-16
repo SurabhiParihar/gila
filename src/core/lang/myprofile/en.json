@@ -6,7 +6,7 @@
   "New Password":"New Password",
   "Confirm Password":"Confirm Password",
   "Change Password":"Change Password",
-  "New passwords do not match":"New passwords do not match",
-  "New password too small":"New password too small",
+  "New passwords do not match":"The passwords do not match",
+  "New password too small":"The new password is too small",
   "Password incorrect":"Password incorrect"
 }
