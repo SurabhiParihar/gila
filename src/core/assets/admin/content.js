@@ -528,7 +528,7 @@ function open_select_from_table(t) {
 function open_select_row(row,table) {
   input_select_row = row;
   g.post("cm/select_row/"+table,"",function(gal){
-    g.dialog({title:__m('_gallery'),body:gal,buttons:'select_row_source',type:'modal',id:'select_row_dialog',class:'large'})
+    g.dialog({title:_e('_gallery'),body:gal,buttons:'select_row_source',type:'modal',id:'select_row_dialog',class:'large'})
   })
 }
 

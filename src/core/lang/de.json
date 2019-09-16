@@ -2,6 +2,7 @@
     "Home": "Start",
     "Search": "Suchen",
     "Submit": "Absenden",
+    "Name": "Name",
     "Title": "Titel",
     "Description": "Beschreibung",
     "Thumbnail": "Miniaturansicht",
@@ -45,7 +46,9 @@
     "Edit": "Bearbeiten",
     "Delete": "Löschen",
     "Update": "Aktualisieren",
+    "Update Time": "Updatezeit",
     "Save": "Speichern",
+    "_not_found": "nicht gefunden",
     "_changes_updated": "Änderungen wurden erfolgreich gespeichert!",
     "Use WEBP":"Verwenden WEBP"
 }

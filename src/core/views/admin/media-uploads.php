@@ -11,6 +11,7 @@ array_splice($path_array,count($path_array)-1);
 $uppath=implode('/',$path_array);
 $path = rtrim($path, '/');
 view::script('src/core/assets/admin/media.js');
+view::script('src/core/lang/content/'.gila::config('language').'.js');
 ?>
 
 <div id='admin-media-div'><div class='fullwidth bordered inline-flex'>

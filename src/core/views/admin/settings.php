@@ -26,6 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') if (router::post('submit-btn')=='subm
   view::alert('success',__('_changes_updated'));
 }
 view::script('src/core/assets/admin/media.js');
+view::script('src/core/lang/content/'.gila::config('language').'.js');
 ?>
 
 <div class="gm-12">

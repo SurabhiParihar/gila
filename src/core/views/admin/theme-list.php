@@ -68,6 +68,7 @@ view::alerts();
 
 <?=view::script('src/core/assets/admin/media.js')?>
 <?=view::script('lib/vue/vue.min.js');?>
+<?=view::script('src/core/lang/content/'.gila::config('language').'.js');?>
 <?=view::script('src/core/assets/admin/listcomponent.js');?>
 <script>
 function theme_activate(p) {

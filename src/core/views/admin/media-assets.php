@@ -40,6 +40,7 @@ if($path=='src') {
 }
 
 view::script('src/core/assets/admin/media.js');
+view::script('src/core/lang/content/'.gila::config('language').'.js');
 ?>
 <div id='admin-media-div'>
 <div class='g-gal wrapper gap-8px' style='background:white;'>

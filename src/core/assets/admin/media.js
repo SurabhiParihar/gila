@@ -22,18 +22,14 @@ function refresh_media_body(data) {
     g('#admin-media-div').parent().html(gal)
   })
 }
-var media_text = {
-  _gallery:'Media Gallery',
-  _new_filepath: 'Please enter new file path',
-  _file_saved: "File saved successfully",
-  _select_file: 'Please select a media file',
-  _new_folder: "Create new folder",
-  _file_deleted: "File deleted successfully"
+
+// Translation
+function _e(phrase)
+{
+  if(typeof lang_array!='undefined') if(typeof lang_array[phrase]!='undefined') return lang_array[phrase];
+  return phrase;
 }
 
-function __m(m) {
-    if(typeof media_text[m] != 'undefined') return media_text[m]; else return m;
-}
 function gallery_upload_files() {
   let fm=new FormData()
   fm.append('uploadfiles', g.el('upload_files').files[0]);
@@ -50,23 +46,23 @@ function gallery_move_selected(path) {
     selected = g('.g-selected').all[0]
     if(selected) {
         old_path = selected.getAttribute('data-path')
-        new_path = prompt(__m('_new_filepath'), old_path);
+        new_path = prompt(_e('_new_filepath'), old_path);
         if(new_path != null) {
           csrfToken=g.el('upload_files').getAttribute('data-csrf')
-          $.post('fm/move', 'newpath='+new_path+'&path='+old_path+'&formToken='+csrfToken, function(msg){
-              if(msg=='') msg=__m('_file_saved')
+          $.post('fm/move', {newpath:new_path, path:old_path, formToken:csrfToken}, function(msg){
+              if(msg=='') msg=_e('_file_saved')
               alert(msg);
               update_gallery_body(path);
           })
         }
     } else {
-        alert(__m('_select_file'))
+        alert(_e('_select_file'))
     }
 }
 
 function gallery_create(path) {
   path += '/'
-  new_path = prompt(__m('_new_folder'), '');
+  new_path = prompt(_e('_new_folder'), '');
   if(new_path != null) {
     g.loader()
     csrfToken=g.el('upload_files').getAttribute('data-csrf')
@@ -88,13 +84,13 @@ function gallery_delete_selected(path) {
         csrfToken=g.el('upload_files').getAttribute('data-csrf')
         g.post('fm/delete', 'path='+filepath+'&formToken='+csrfToken,function(msg){
           g.loader(false)
-          if(msg=='') msg=__m('_file_deleted')
+          if(msg=='') msg=_e('_file_deleted')
           alert(msg);
           update_gallery_body(path);
         })
       }
   } else {
-    alert(__m('_select_file'))
+    alert(_e('_select_file'))
   }
 }
 
@@ -113,7 +109,7 @@ function gallery_refresh_thumb(path) {
       })
     }
   } else {
-    alert(__m('_select_file'))
+    alert(_e('_select_file'))
   }
 }
 
@@ -140,7 +136,7 @@ function open_media_gallery(mpi, mici) {
   media_path_input = mpi;
   media_image_caption_input = mici;
   g.post("admin/media","g_response=content",function(gal){
-        g.dialog({title:__m('_gallery'),body:gal,buttons:'select_media_path',type:'modal',id:'media_dialog',class:'large'})
+        g.dialog({title:_e('_gallery'),body:gal,buttons:'select_media_path',type:'modal',id:'media_dialog',class:'large'})
     })
 }
 

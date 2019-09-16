@@ -24,6 +24,7 @@ return [
     ],
     'thumbnail'=> [
       'type'=>'media',
+      'title'=>'Thumbnail',
       'type'=>'meta',
       'input-type'=>'media',
       'meta-csv'=>true,
@@ -43,7 +44,7 @@ return [
       'qoptions'=>"SELECT id, username FROM user"
     ],
     'updated'=> [
-      'title'=>'Last updated',
+      'title'=>'Updated',
       'type'=>'date',
       'searchbox'=>'period',
       'edit'=>false,'create'=>false
